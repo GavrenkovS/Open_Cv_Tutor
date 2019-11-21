@@ -3,6 +3,7 @@ import video
 import numpy as np
 import time
 
+start_time = time.process_time()
 if __name__ == '__main__':
     # создаем окно с именем result
     cv2.namedWindow("result")
@@ -25,9 +26,9 @@ if __name__ == '__main__':
             # kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
             # dst = cv2.filter2D(img, -1, kernel)
             result = cv2.bitwise_and(img_hsv, img_hsv, mask=mask_blue)
-            result = cv2.cvtColor(result,cv2.COLOR_HSV2BGR)
+            result = cv2.cvtColor(result, cv2.COLOR_HSV2BGR)
 
-            moments = cv2.moments(mask_blue,1)
+            moments = cv2.moments(mask_blue, 1)
             dM01 = moments["m01"]
             dM10 = moments["m10"]
             dArea = moments["m00"]
@@ -35,16 +36,18 @@ if __name__ == '__main__':
             if dArea > 400:
                 x = int(dM10 / dArea)
                 y = int(dM01 / dArea)
-                cv2.circle(img,(x,y), 10,(255,0,0),-1)
-                print (x,y)
-
-
-
-
-
+                cv2.circle(img, (x, y), 10, (255, 0, 0), -1)
+                print(x, y)
+                if (time.process_time() - start_time) > 3:
+                    print(time.process_time() - start_time)
+                else:
+                    print(f"start_time else2 {time.process_time() - start_time}")
+            else:
+                start_time = time.process_time()
+                #print (f"start_time else1 {start_time}")
             dst = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-            #cv2.imshow('result', mask_blue)
-            #cv2.imshow('result', result)
+            # cv2.imshow('result', mask_blue)
+            # cv2.imshow('result', result)
             cv2.imshow('result', img)
             # отображаем кадр в окне с именем result
 
