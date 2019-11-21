@@ -22,7 +22,8 @@ if __name__ == '__main__':
     conf = etree.parse('conf.xml')
     vpath = conf.xpath('/document/vpath/text()')[0]
     vhost = conf.xpath('/document/vhost/text()')[0]
-    subprocess.Popen([vpath, "file:///C:/Users/Roger/Desktop/HOME/Sergey/Buisness/Prog_learnign/Open_Cv_tut/1.m3u"])
+    vpl = conf.xpath('/document/vpl/text()')[0]
+    subprocess.Popen([vpath, vpl])
     buttons0 = ['FFA25D', 'FF629D', 'FFE21D', 'FF22DD', 'FF02FD', 'FFC23D', 'FFE01F', 'FFA857', 'FF906F',
                 'FF6897',
                 'FF9867', 'FFB04F', 'FF30CF', 'FF18E7', 'FF7A85', 'FF10EF', 'FF38C7', 'FF5AA5', 'FF42BD',
