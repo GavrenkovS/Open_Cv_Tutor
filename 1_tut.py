@@ -15,17 +15,22 @@ if __name__ == '__main__':
     while True:
         # захватываем текущий кадр и кладем его в переменную img
         flag, img = cap.read()
-        low_blue = np.array((13,100,220), np.uint8)
-        high_blue = np.array((25,210,255), np.uint8)
+        low_blue = np.array((13, 100, 220), np.uint8)
+        high_blue = np.array((25, 210, 255), np.uint8)
         try:
-            img_hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+            img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
             mask_blue = cv2.inRange(img_hsv, low_blue, high_blue)
             # img = cv2.GaussianBlur(img, (101, 101), 10)#1 + 2n =
             # dst = cv2.filter2D(img, -1, kernel)
             # kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
             # dst = cv2.filter2D(img, -1, kernel)
+            result = cv2.bitwise_and(img_hsv, img_hsv, mask=mask_blue)
+            result = cv2.cvtColor(result,cv2.COLOR_HSV2BGR)
+
+
             dst = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-            cv2.imshow('result', mask_blue)
+            #cv2.imshow('result', mask_blue)
+            cv2.imshow('result', result)
             # отображаем кадр в окне с именем result
 
         except:
