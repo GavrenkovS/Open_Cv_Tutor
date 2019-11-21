@@ -27,10 +27,25 @@ if __name__ == '__main__':
             result = cv2.bitwise_and(img_hsv, img_hsv, mask=mask_blue)
             result = cv2.cvtColor(result,cv2.COLOR_HSV2BGR)
 
+            moments = cv2.moments(mask_blue,1)
+            dM01 = moments["m01"]
+            dM10 = moments["m10"]
+            dArea = moments["m00"]
+
+            if dArea > 400:
+                x = int(dM10 / dArea)
+                y = int(dM01 / dArea)
+                cv2.circle(img,(x,y), 10,(255,0,0),-1)
+                print (x,y)
+
+
+
+
 
             dst = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
             #cv2.imshow('result', mask_blue)
-            cv2.imshow('result', result)
+            #cv2.imshow('result', result)
+            cv2.imshow('result', img)
             # отображаем кадр в окне с именем result
 
         except:
