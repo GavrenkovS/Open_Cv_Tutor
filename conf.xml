@@ -1,0 +1,5 @@
+<document>
+	<vhost>http://127.0.0.1:8180</vhost>
+	<vpath>C:/Program Files/VideoLAN/VLC/vlc.exe</vpath>
+	<vpl>file:///C:/Users/Roger/Desktop/HOME/Sergey/Buisness/Prog_learnign/Open_Cv_tut/1.m3u</vpl>
+</document>
